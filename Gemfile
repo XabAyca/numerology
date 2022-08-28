@@ -3,10 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.1"
 
-gem 'jsbundling-rails'  # needed for bootstrap javascript
-
-gem 'cssbundling-rails' # Install bootstrap 5
-
 gem "haml-rails"
 
 gem 'simple_form'
@@ -70,6 +66,8 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'factory_bot_rails'
+
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 end
 
 group :development do

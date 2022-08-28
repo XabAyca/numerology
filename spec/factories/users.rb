@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    email      { "john_doe@test.fr" }
-    first_name { "John" }
-    last_name  { "Doe" }
-    birthday   { Date.new(1991,8,6) }
+    email      { Faker::Internet.email }
+    first_name { Faker::Name.first_name  }
+    last_name  { Faker::Name.last_name  }
+    birthday   { Faker::Date.birthday(min_age: 1, max_age: 65) }
     password   { "password" }
     trait :admin do
       admin    { true }

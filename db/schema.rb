@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_171422) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "admin", default: false
-    t.datetime "birthday"
+    t.date "birthday"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
