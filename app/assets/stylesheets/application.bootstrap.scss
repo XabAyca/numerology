@@ -1,2 +1,7 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+/* Base */
+@import 'partials/base/_base.scss';
+@import 'partials/base/forms.scss';
