@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    attributes:
+      user:
+    models:
+      user: "Utilisateur"
+  helpers:
+    submit:
+      create: "Créer"
+      update: "Mise à jour"
+      user:
+        create: "Créer un compte"

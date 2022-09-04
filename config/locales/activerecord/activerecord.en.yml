@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    attributes:
+      user:
+    models:
+      user: "User"
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
+      user:
+        create: "Create new account"
+
