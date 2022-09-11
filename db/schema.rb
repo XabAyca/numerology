@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_171422) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_11_191920) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
+
+  create_table "guidances", force: :cascade do |t|
+    t.bigint "line_of_life_id"
+    t.bigint "line_of_realisation_id"
+    t.hstore "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["line_of_life_id"], name: "index_guidances_on_line_of_life_id"
+    t.index ["line_of_realisation_id"], name: "index_guidances_on_line_of_realisation_id"
+  end
+
+  create_table "lines", force: :cascade do |t|
+    t.integer "key"
+    t.hstore "data"
+    t.string "type", limit: 255
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["type"], name: "index_lines_on_type"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -30,4 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_171422) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "guidances", "lines", column: "line_of_life_id"
+  add_foreign_key "guidances", "lines", column: "line_of_realisation_id"
 end
