@@ -5,8 +5,8 @@ class User < ApplicationRecord
 
   ## Validations
   validates :email, presence: true
-  validates :first_name, length: { minimum: 2 }
-  validates :last_name, length: { minimum: 2 }
+  validates :first_name, length: { minimum: 2 }, allow_blank: true
+  validates :last_name, length: { minimum: 2 }, allow_blank: true
 
   ## Relations
 

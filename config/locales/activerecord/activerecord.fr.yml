@@ -2,6 +2,20 @@ fr:
   activerecord:
     attributes:
       user:
+        email: "Email"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+        remember_me: "Se souvenir de moi"
+    errors:
+      models:
+        user:
+          attributes:
+            first_name:
+              too_short: "Minimum 2 lettres"
+            last_name:
+              too_short: "Minimum 2 lettres"
+            password:
+              blank: "Le mot de passe est vide"
     models:
       user: "Utilisateur"
   helpers:
