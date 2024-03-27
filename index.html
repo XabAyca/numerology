@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Site Web</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+      body {
+        background-color: #f8f9fa; /* Couleur de fond Bootstrap */
+      }
+      .container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .header-text {
+        color: #495057; /* Couleur du texte sombre Bootstrap */
+      }
+      label {
+        color: #0d6efd; /* Couleur du lien Bootstrap */
+      }
+      input::placeholder {
+        color: red;
+      }
+      input {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="text-center mb-5">
+        <h1 class="header-text">
+          Bienvenue dans le monde de la Numérologie Zen
+        </h1>
+        <p class="lead">
+          Découvrez votre chemin vers la paix intérieure et l'équilibre avec la
+          numérologie.
+        </p>
+      </header>
+
+      <section>
+        <form>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              placeholder="Prénom"
+            />
+            <label for="floatingInput">Prénom</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Nom"
+            />
+            <label for="floatingPassword">Nom</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="date"
+              class="form-control"
+              id="floatingPassword"
+              placeholder="Date de naissance"
+            />
+            <label for="floatingPassword">Date de naissance</label>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Lancer les calculs...
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <footer class="text-center mt-auto pb-4">
+      <p>
+        Visitez
+        <a
+          href="https://envol-liberation.fr"
+          target="_blank"
+          class="footer-link"
+          >Envol Libération</a
+        >
+        pour plus de sérénité.
+      </p>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
