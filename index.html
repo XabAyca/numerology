@@ -3,41 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mon Site Web</title>
+    <title>Mon outil de numérologie</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-    <style>
-      body {
-        background-color: #f8f9fa; /* Couleur de fond Bootstrap */
-      }
-      .container {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .header-text {
-        color: #495057; /* Couleur du texte sombre Bootstrap */
-      }
-      label {
-        color: #0d6efd; /* Couleur du lien Bootstrap */
-      }
-      input::placeholder {
-        color: red;
-      }
-      input {
-        color: red;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body>
-    <div class="container">
-      <header class="text-center mb-5">
+    <div class="light x1"></div>
+    <div class="light x2"></div>
+    <div class="light x3"></div>
+    <div class="light x4"></div>
+    <div class="light x5"></div>
+    <div class="light x6"></div>
+    <div class="light x7"></div>
+    <div class="light x8"></div>
+    <div class="light x9"></div>
+
+    <div
+      class="container p-5 vh-100 d-flex flex-column justify-content-between"
+    >
+      <header class="text-center my-5">
         <h1 class="header-text">
           Bienvenue dans le monde de la Numérologie Zen
         </h1>
@@ -49,52 +38,62 @@
 
       <section>
         <form>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingFirstName"
+                  placeholder="Prénom"
+                  required
+                />
+                <label for="floatingFirstName">Prénom</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingLastName"
+                  placeholder="Nom"
+                  required
+                />
+                <label for="floatingLastName">Nom</label>
+              </div>
+            </div>
+          </div>
           <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="floatingInput"
-              placeholder="Prénom"
-            />
-            <label for="floatingInput">Prénom</label>
-          </div>
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control"
-              id="floatingPassword"
-              placeholder="Nom"
-            />
-            <label for="floatingPassword">Nom</label>
-          </div>
-          <div class="form-floating">
             <input
               type="date"
               class="form-control"
-              id="floatingPassword"
+              id="floatingDate"
               placeholder="Date de naissance"
+              required
             />
-            <label for="floatingPassword">Date de naissance</label>
+            <label for="floatingDate">Date de naissance</label>
           </div>
-          <button type="submit" class="btn btn-primary">
-            Lancer les calculs...
-          </button>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">C'est parti !</button>
+          </div>
         </form>
       </section>
-    </div>
 
-    <footer class="text-center mt-auto pb-4">
-      <p>
-        Visitez
-        <a
-          href="https://envol-liberation.fr"
-          target="_blank"
-          class="footer-link"
-          >Envol Libération</a
-        >
-        pour plus de sérénité.
-      </p>
-    </footer>
+      <footer class="mb-5 text-center">
+        <p>
+          Visitez
+          <a
+            href="https://envol-liberation.com/"
+            target="_blank"
+            class="footer-link"
+            >Envol Libération</a
+          >
+          pour plus de sérénité accompagné de Françoise Laplace
+        </p>
+        <p>Fait avec amour ♥</p>
+      </footer>
+    </div>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
