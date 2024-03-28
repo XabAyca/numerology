@@ -1,0 +1,21 @@
+input {
+  color: #444444 !important;
+  background-color: transparent !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid !important;
+  border-image-source: linear-gradient(
+    to right,
+    #444444,
+    rgba(255, 0, 0, 0)
+  ) !important;
+  border-image-slice: 1 !important;
+  border-width: 2px !important;
+}
+label {
+  background-color: transparent !important;
+}
+label:after {
+  background-color: transparent !important;
+}
