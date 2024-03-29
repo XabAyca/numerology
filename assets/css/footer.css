@@ -1,0 +1,13 @@
+#waterdrop {
+  height: 30px;
+}
+
+#waterdrop canvas {
+  bottom: -70px !important;
+}
+footer {
+  background-color: #b3d891;
+}
+footer p {
+  color: #fff;
+}
