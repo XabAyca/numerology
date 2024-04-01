@@ -34,8 +34,8 @@
         </p>
       </header>
 
-      <section class="container">
-        <form>
+      <section class="container" id="formular">
+        <form id="user_formular">
           <div class="row">
             <div class="col-md-6">
               <div class="form-floating mb-3">
@@ -73,9 +73,23 @@
             <label for="floatingDate">Date de naissance</label>
           </div>
           <div class="text-center mt-5">
-            <button type="submit" class="bubbly-button">C'est parti !</button>
+            <button type="submit" class="bubbly-button" id="submit_btn">C'est parti !</button>
           </div>
         </form>
+      </section>
+
+      <section class="container" id="response" style="display: none">
+        <h4>Chemin de vie</h4>
+        <p id="life_road"></p>
+        <h4>Nombre de réalisations</h4>
+        <p id="number_of_achievements"></p>
+        <h4>Année personnelle</h4>
+        <p id="personnal_year"></p>
+        <h4>Vibration jour de naissance</h4>
+        <p id="birth_day_vibration"></p>
+        <h4>Initiation spirituelle</h4>
+        <p id="spiritual_initiation"></p>
+        <button type="submit" class="bubbly-button" id="retest">Réessayer</button>
       </section>
 
       <div>
