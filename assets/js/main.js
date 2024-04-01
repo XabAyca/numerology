@@ -115,12 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const personnalYear = () => {
-    // Année universelle + jourN + MoisN
-    return calculBaseNine(parseInt(`${day()}${month()}`));
+    return calculBaseNine(parseInt(`${new Date().getFullYear()}${day()}${month()}`));
   };
 
   const birthDayVibration = () => {
-    // ?????????
     return calculBaseNine(parseInt(`${day()}`));
   };
 
