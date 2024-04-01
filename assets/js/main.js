@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
           blockresponse.style.display = "block";
         } else if (e.target == reTestBtn) {
           resetFields();
+          resetDatas();
           blockFormular.style.display = "block";
           blockresponse.style.display = "none";
         }
@@ -53,6 +54,14 @@ document.addEventListener("DOMContentLoaded", () => {
       inputs[i].value = null;
     }
   };
+
+  const resetDatas = () => {
+    personnalYearHtml.innerHTML = "";
+    birthDayVibrationHtml.innerHTML = "";
+    spiritualInitiationHtml.innerHTML = "";
+    lifeRoadHtml.innerHTML = "";
+    numberOfAchievementsHtml.innerHTML = "";
+  }
 
   submitBtn.addEventListener("click", togglblock);
   reTestBtn.addEventListener("click", togglblock);
