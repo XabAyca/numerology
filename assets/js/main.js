@@ -18,6 +18,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const activeNumberHtml = document.getElementById("active_number");
   const heredityNumberHtml = document.getElementById("heredity_number");
   const lifeNumberHtml = document.getElementById("life_number");
+  const firstNameHtml = document.getElementById("first_name");
+  const lastNameHtml = document.getElementById("last_name");
+  const birthdayHtml = document.getElementById("birthday");
+  const printBtn = document.getElementById("print-btn");
+  const printArea = document.getElementById("print-area");
+  const months = [
+    "janvier",
+    "février",
+    "mars",
+    "avril",
+    "mai",
+    "juin",
+    "juillet",
+    "août",
+    "septembre",
+    "octobre",
+    "novembre",
+    "décembre",
+  ];
+
   const list = [
     "lifeRoad",
     "numberOfAchievements",
@@ -30,6 +50,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "activeNumber",
     "heredityNumber",
     "lifeNumber",
+    "firstName",
+    "lastName",
+    "birthday",
   ];
   let letterValues;
   async function getLetterValues() {
@@ -37,6 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
     letterValues = await reponse.json();
   }
   getLetterValues();
+
+  ///////////////////////// Print /////////////////////////
+  const print = () => {
+    let printContents = response.innerHTML;
+    let originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    document.body.classList.remove("body");
+    document.body.classList.add("print-body");
+
+    window.print();
+    location.reload();
+  };
+
+  printBtn.addEventListener("click", print);
 
   ///////////////////////// Btn Animation /////////////////////////
   const animateButton = (e) => {
@@ -90,11 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ///////////////////////// Calcul helpers /////////////////////////
   const baseString = (string) => {
-    let result = string
-      .toLowerCase()
-      .match(/\p{Ll}/gu)
+    let result = string.toLowerCase().match(/\p{Ll}/gu);
 
-    return Array.isArray(result) ? result.join("") : ""
+    return Array.isArray(result) ? result.join("") : "";
   };
 
   const letterToNumber = (letter) => {
@@ -106,24 +141,28 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const textToNumber = (text) => {
-    return baseString(text)
-      .split("")
-      .map((letter) => {
-        return letterToNumber(letter);
-      })
-      .join("");
+    if (text == "") {
+      return 0;
+    } else {
+      return baseString(text)
+        .split("")
+        .map((letter) => {
+          return letterToNumber(letter);
+        })
+        .join("");
+    }
   };
 
   const onlyVowels = (string) => {
-    let result = baseString(string)
-      .match(/[aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g)
+    let result = baseString(string).match(/[aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g);
 
-    return Array.isArray(result) ? result.join("") : ""
+    return Array.isArray(result) ? result.join("") : "";
   };
 
   const onlyConsonants = (string) => {
-    let result = baseString(string)
-      .match(/[^aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g)
+    let result = baseString(string).match(
+      /[^aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g
+    );
 
     return Array.isArray(result) ? result.join("") : "";
   };
@@ -136,11 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .reduce((a, b) => {
         return a + b;
       });
-
-    if (result > 9) {
-      return calculBaseNine(result);
-    } else {
+    if (result < 10 || [11, 22].includes(result)) {
       return result;
+    } else {
+      return calculBaseNine(result);
     }
   };
 
@@ -164,6 +202,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return lastNameInput.value;
   };
 
+  const birthday = () => {
+    return `${day()} ${months[parseInt(month()) - 1]} ${year()}`;
+  };
+
   ///////////////////////// Calculs /////////////////////////
   const lifeRoad = () => {
     return calculBaseNine(parseInt(`${day()}${month()}${year()}`));
@@ -185,40 +227,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const spiritualInitiation = () => {
     return calculBaseNine(
-      expression() + lifeRoad() + calculBaseNine(parseInt(day()))
+      calculBaseNine(
+        parseInt(`${expression()}${lifeRoad()}${day()}${spiritualImpulse()}`)
+      )
     );
   };
 
   const expression = () => {
-    return calculBaseNine(
-      parseInt(textToNumber(`${firstName()}${lastName()}`))
-    );
+    return calculBaseNine(textToNumber(`${firstName()}${lastName()}`));
   };
 
   const spiritualImpulse = () => {
     return calculBaseNine(
-      parseInt(
-        textToNumber(`${onlyVowels(firstName())}${onlyVowels(lastName())}`)
-      )
+      textToNumber(`${onlyVowels(firstName())}${onlyVowels(lastName())}`)
     );
   };
 
   const intimateSelf = () => {
     return calculBaseNine(
-      parseInt(
-        textToNumber(
-          `${onlyConsonants(firstName())}${onlyConsonants(lastName())}`
-        )
+      textToNumber(
+        `${onlyConsonants(firstName())}${onlyConsonants(lastName())}`
       )
     );
   };
 
   const activeNumber = () => {
-    return calculBaseNine(parseInt(textToNumber(firstName())));
+    return calculBaseNine(textToNumber(firstName()));
   };
 
   const heredityNumber = () => {
-    return calculBaseNine(parseInt(textToNumber(lastName())));
+    return calculBaseNine(textToNumber(lastName()));
   };
 
   const lifeNumber = () => {
