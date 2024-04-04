@@ -7,14 +7,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstNameInput = document.getElementById("floatingFirstName");
   const lastNameInput = document.getElementById("floatingLastName");
   const dateInput = document.getElementById("floatingDate");
-  let letterValue;
-  async function getLetterValue() {
+  const lifeRoadHtml = document.getElementById("life_road");
+  const numberOfAchievementsHtml = document.getElementById("number_of_achievements");
+  const personnalYearHtml = document.getElementById("personnal_year");
+  const birthDayVibrationHtml = document.getElementById("birth_day_vibration");
+  const spiritualInitiationHtml = document.getElementById("spiritual_initiation");
+  const expressionHtml = document.getElementById("expression");
+  const spiritualImpulseHtml = document.getElementById("spiritual_impulse");
+  const intimateSelfHtml = document.getElementById("intimate_self");
+  const activeNumberHtml = document.getElementById("active_number");
+  const heredityNumberHtml = document.getElementById("heredity_number");
+  const lifeNumberHtml = document.getElementById("life_number");
+  const list = [
+    "lifeRoad",
+    "numberOfAchievements",
+    "personnalYear",
+    "birthDayVibration",
+    "spiritualInitiation",
+    "expression",
+    "spiritualImpulse",
+    "intimateSelf",
+    "activeNumber",
+    "heredityNumber",
+    "lifeNumber",
+  ];
+  let letterValues;
+  async function getLetterValues() {
     const reponse = await fetch("./data/letter_value.json");
-    letterValue = await reponse.json();
+    letterValues = await reponse.json();
   }
-  getLetterValue();
+  getLetterValues();
 
-  // Btn Animation //
+  ///////////////////////// Btn Animation /////////////////////////
   const animateButton = (e) => {
     e.target.classList.remove("animate");
     e.target.classList.add("animate");
@@ -25,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   submitBtn.addEventListener("click", animateButton);
 
-  // Toggl block //
+  ///////////////////////// Toggl block /////////////////////////
   const togglblock = (e) => {
     let isValid = userFormular.checkValidity();
 
@@ -56,34 +80,52 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const resetDatas = () => {
-    personnalYearHtml.innerHTML = "";
-    birthDayVibrationHtml.innerHTML = "";
-    spiritualInitiationHtml.innerHTML = "";
-    lifeRoadHtml.innerHTML = "";
-    numberOfAchievementsHtml.innerHTML = "";
-  }
+    for (let i = 0, max = list.length; i < max; i++) {
+      eval(`${list[i]}Html`).innerHTML = "";
+    }
+  };
 
   submitBtn.addEventListener("click", togglblock);
   reTestBtn.addEventListener("click", togglblock);
 
-  // Calcul helpers //
+  ///////////////////////// Calcul helpers /////////////////////////
   const baseString = (string) => {
-    return string
+    let result = string
       .toLowerCase()
       .match(/\p{Ll}/gu)
+
+    return Array.isArray(result) ? result.join("") : ""
+  };
+
+  const letterToNumber = (letter) => {
+    let result = "";
+    Object.keys(letterValues).forEach((key) => {
+      letterValues[key].includes(letter) ? (result = key) : null;
+    });
+    return result;
+  };
+
+  const textToNumber = (text) => {
+    return baseString(text)
+      .split("")
+      .map((letter) => {
+        return letterToNumber(letter);
+      })
       .join("");
   };
 
   const onlyVowels = (string) => {
-    return baseString(string)
+    let result = baseString(string)
       .match(/[aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g)
-      .join("");
+
+    return Array.isArray(result) ? result.join("") : ""
   };
 
   const onlyConsonants = (string) => {
-    return baseString(string)
+    let result = baseString(string)
       .match(/[^aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g)
-      .join("");
+
+    return Array.isArray(result) ? result.join("") : "";
   };
 
   const calculBaseNine = (number) => {
@@ -114,7 +156,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return dateInput.value.split("-")[0];
   };
 
-  // Calculs //
+  const firstName = () => {
+    return firstNameInput.value;
+  };
+
+  const lastName = () => {
+    return lastNameInput.value;
+  };
+
+  ///////////////////////// Calculs /////////////////////////
   const lifeRoad = () => {
     return calculBaseNine(parseInt(`${day()}${month()}${year()}`));
   };
@@ -124,7 +174,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const personnalYear = () => {
-    return calculBaseNine(parseInt(`${new Date().getFullYear()}${day()}${month()}`));
+    return calculBaseNine(
+      parseInt(`${new Date().getFullYear()}${day()}${month()}`)
+    );
   };
 
   const birthDayVibration = () => {
@@ -132,26 +184,51 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const spiritualInitiation = () => {
-    // Expression + ch de vie + elan spirit + jour N
-    return calculBaseNine(parseInt(`${day()}`));
+    return calculBaseNine(
+      expression() + lifeRoad() + calculBaseNine(parseInt(day()))
+    );
   };
 
-  // Display methods //
-  const lifeRoadHtml = document.getElementById("life_road");
-  const numberOfAchievementsHtml = document.getElementById(
-    "number_of_achievements"
-  );
-  const personnalYearHtml = document.getElementById("personnal_year");
-  const birthDayVibrationHtml = document.getElementById("birth_day_vibration");
-  const spiritualInitiationHtml = document.getElementById(
-    "spiritual_initiation"
-  );
+  const expression = () => {
+    return calculBaseNine(
+      parseInt(textToNumber(`${firstName()}${lastName()}`))
+    );
+  };
 
+  const spiritualImpulse = () => {
+    return calculBaseNine(
+      parseInt(
+        textToNumber(`${onlyVowels(firstName())}${onlyVowels(lastName())}`)
+      )
+    );
+  };
+
+  const intimateSelf = () => {
+    return calculBaseNine(
+      parseInt(
+        textToNumber(
+          `${onlyConsonants(firstName())}${onlyConsonants(lastName())}`
+        )
+      )
+    );
+  };
+
+  const activeNumber = () => {
+    return calculBaseNine(parseInt(textToNumber(firstName())));
+  };
+
+  const heredityNumber = () => {
+    return calculBaseNine(parseInt(textToNumber(lastName())));
+  };
+
+  const lifeNumber = () => {
+    return calculBaseNine(expression() + lifeRoad());
+  };
+
+  ///////////////////////// Display methods /////////////////////////
   const displayResponse = () => {
-    lifeRoadHtml.innerHTML = lifeRoad();
-    numberOfAchievementsHtml.innerHTML = numberOfAchievements();
-    personnalYearHtml.innerHTML = personnalYear();
-    birthDayVibrationHtml.innerHTML = birthDayVibration();
-    spiritualInitiationHtml.innerHTML = spiritualInitiation();
+    for (let i = 0, max = list.length; i < max; i++) {
+      eval(`${list[i]}Html`).innerHTML = eval(`${list[i]}()`);
+    }
   };
 });
