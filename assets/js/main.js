@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const firstNameHtml = document.getElementById("first_name");
   const lastNameHtml = document.getElementById("last_name");
   const birthdayHtml = document.getElementById("birthday");
+  const missingNumberHtml = document.getElementById("missing_number");
   const printBtn = document.getElementById("print-btn");
   const printArea = document.getElementById("print-area");
   const months = [
@@ -53,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "firstName",
     "lastName",
     "birthday",
+    "missingNumber"
   ];
   let letterValues;
   async function getLetterValues() {
@@ -261,6 +263,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const lifeNumber = () => {
     return calculBaseNine(expression() + lifeRoad());
+  };
+
+  const missingNumber = () => {
+    let presentNumbers = textToNumber(`${firstName()}${lastName()}`).split("")
+    let allNumbers = Object.keys(letterValues)
+
+    return allNumbers.filter(numb => {
+      return !presentNumbers.includes(numb)
+    }).join(", ")
   };
 
   ///////////////////////// Display methods /////////////////////////
