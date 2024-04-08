@@ -154,20 +154,20 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const onlyVowels = (string) => {
-    let result = baseString(string).match(/[aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g);
+    let result = baseString(string).match(/[aeiouyàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g);
 
     return Array.isArray(result) ? result.join("") : "";
   };
 
   const onlyConsonants = (string) => {
     let result = baseString(string).match(
-      /[^aeiouàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g
+      /[^aeiouyàáâãäåæèéêëìíîïòóôõöùúûüýÿ]/g
     );
 
     return Array.isArray(result) ? result.join("") : "";
   };
 
-  const calculBaseNine = (number) => {
+  const calculBaseNine = (number, with_specific = true) => {
     let result = number
       .toString()
       .split("")
@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .reduce((a, b) => {
         return a + b;
       });
-    if (result < 10 || [11, 22].includes(result)) {
+    if (result < 10 || ([11, 22].includes(result) && with_specific)) {
       return result;
     } else {
       return calculBaseNine(result);
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const personnalYear = () => {
     return calculBaseNine(
-      parseInt(`${new Date().getFullYear()}${day()}${month()}`)
+      parseInt(`${new Date().getFullYear()}${day()}${month()}`), false
     );
   };
 
