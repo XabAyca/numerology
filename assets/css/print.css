@@ -1,7 +1,44 @@
-.print button{
+#logo {
+  position: absolute;
+  width: 100px;
+  top: 15px;
+  left: 15px
+}
+
+header{
+  margin-bottom: 0 0 0 0 !important;
+}
+
+button {
   display: none;
 }
 
-.print{
-  text-align: left;
+.text-center{
+  text-align: left !important;
+}
+
+h1{
+  text-align: center;
+  font-size: 19px !important
+}
+
+h3{
+  font-size: 15px !important
+}
+
+h5{
+  font-size: 14px !important
+}
+
+.lead{
+  text-align: center;
+  font-size: 17px !important
+}
+
+p{
+  font-size: 12px !important;
+}
+
+footer{
+  text-align: center !important;
 }

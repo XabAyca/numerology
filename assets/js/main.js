@@ -65,14 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   ///////////////////////// Print /////////////////////////
   const print = () => {
-    let printContents = response.innerHTML;
-    let originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    document.body.classList.remove("body");
-    document.body.classList.add("print-body");
-
     window.print();
-    location.reload();
   };
 
   printBtn.addEventListener("click", print);

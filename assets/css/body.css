@@ -12,8 +12,13 @@
   animation: fadeIn 1 1s ease-out;
 }
 
-.print-body{
-  background-color: white;
+#logo{
+  display: none
+}
+
+a {
+  color: #b3d891;
+  font-weight: bold;
 }
 
 .light {
