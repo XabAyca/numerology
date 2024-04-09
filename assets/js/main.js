@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .reduce((a, b) => {
         return a + b;
       });
-    if (result < 10 || ([11, 22].includes(result) && with_specific)) {
+    if (result < 10 || ([11, 22, 33].includes(result) && with_specific)) {
       return result;
     } else {
       return calculBaseNine(result);
