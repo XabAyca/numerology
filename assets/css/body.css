@@ -12,6 +12,23 @@
   animation: fadeIn 1 1s ease-out;
 }
 
+.zoom{
+  transition-duration: 1s;
+}
+
+.zoom:hover{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  border-radius: 50px;
+  transform: scale(1.05);
+  cursor: zoom-in;
+  z-index: 1000;
+}
+
+.subtitle{
+  font-weight: bold;
+  font-size: x-large;
+}
+
 #logo{
   display: none
 }

@@ -42,3 +42,7 @@ p{
 footer{
   text-align: center !important;
 }
+
+.subtitle{
+  display: none !important;
+}
