@@ -12,16 +12,26 @@
   animation: fadeIn 1 1s ease-out;
 }
 
+p, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+  color: #444444 !important
+}
+
 .zoom{
-  transition-duration: 1s;
+  transition-duration: .6s;
 }
 
 .zoom:hover{
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
-  border-radius: 50px;
-  transform: scale(1.05);
+  text-shadow: 1px 1px 2px #b3d891, 0 0 1em #b3d891, 0 0 0.2em #b3d891;
+  transform: scale(1.1);
   cursor: zoom-in;
-  z-index: 1000;
+}
+
+.table>:not(caption)>*>*{
+  background-color: transparent !important;
+}
+
+.table{
+  border-color: #444444
 }
 
 .subtitle{
