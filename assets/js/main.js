@@ -22,6 +22,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const lastNameHtml = document.getElementById("last_name");
   const birthdayHtml = document.getElementById("birthday");
   const missingNumberHtml = document.getElementById("missing_number");
+  const firstCycleHtml = document.getElementById("first-cycle");
+  const firstApogeeHtml = document.getElementById("first-apogee");
+  const firstApogeeDurationHtml = document.getElementById("first-apogee-duration");
+  const secondApogeeDurationHtml = document.getElementById("second-apogee-duration");
+  const secondApogeeDurationBisHtml = document.getElementById("second-apogee-duration-bis");
+  const thirdApogeeDurationHtml = document.getElementById("third-apogee-duration");
+  const thirdApogeeDurationBisHtml = document.getElementById("third-apogee-duration-bis");
+  const fourthApogeeDurationHtml = document.getElementById("fourth-apogee-duration");
+  const secondCycleHtml = document.getElementById("second-cycle");
+  const thirdCycleHtml = document.getElementById("third-cycle");
+  const secondApogeeHtml = document.getElementById("second-apogee");
+  const thirdApogeeHtml = document.getElementById("third-apogee");
+  const fourthApogeeHtml = document.getElementById("fourth-apogee");
   const printBtn = document.getElementById("print-btn");
   const printArea = document.getElementById("print-area");
   const months = [
@@ -54,7 +67,20 @@ document.addEventListener("DOMContentLoaded", () => {
     "firstName",
     "lastName",
     "birthday",
-    "missingNumber"
+    "missingNumber",
+    "firstCycle",
+    "secondCycle",
+    "thirdCycle",
+    "firstApogee",
+    "firstApogeeDuration",
+    "secondApogeeDuration",
+    "secondApogeeDurationBis",
+    "thirdApogeeDuration",
+    "thirdApogeeDurationBis",
+    "fourthApogeeDuration",
+    "secondApogee",
+    "thirdApogee",
+    "fourthApogee"
   ];
   let letterValues;
   async function getLetterValues() {
@@ -163,6 +189,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const calculBaseNine = (number, with_specific = true) => {
+    if (number < 10 || ([11, 22, 33].includes(number) && with_specific)) {
+      return parseInt(number);
+    }
+
     let result = number
       .toString()
       .split("")
@@ -170,11 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .reduce((a, b) => {
         return a + b;
       });
-    if (result < 10 || ([11, 22, 33].includes(result) && with_specific)) {
-      return result;
-    } else {
-      return calculBaseNine(result);
-    }
+
+    return calculBaseNine(result, with_specific);
   };
 
   const month = () => {
@@ -266,6 +293,66 @@ document.addEventListener("DOMContentLoaded", () => {
       return !presentNumbers.includes(numb)
     }).join(", ")
   };
+
+  const firstCycle = () => {
+    return calculBaseNine(month());
+  }
+
+  const firstApogee = () => {
+    return calculBaseNine(
+      parseInt(`${day()}${month()}`)
+    );
+  }
+
+  const firstApogeeDuration = () => {
+    return 36 - lifeRoad();
+  }
+
+  const secondApogeeDuration = () => {
+    return firstApogeeDuration();
+  }
+
+  const secondApogeeDurationBis = () => {
+    return firstApogeeDuration() + 9;
+  }
+
+  const thirdApogeeDuration = () => {
+    return secondApogeeDurationBis();
+  }
+
+  const thirdApogeeDurationBis = () => {
+    return secondApogeeDurationBis() + 9;
+  }
+
+  const fourthApogeeDuration = () => {
+    return thirdApogeeDurationBis();
+  }
+
+  const secondApogee = () => {
+    return calculBaseNine(
+      parseInt(`${day()}${year()}`)
+    );
+  }
+
+  const thirdApogee = () => {
+    return calculBaseNine(
+      parseInt(`${firstApogee()}${secondApogee()}`)
+    );
+  }
+
+  const fourthApogee = () => {
+    return calculBaseNine(
+      parseInt(`${month()}${year()}`)
+    );
+  }
+
+  const secondCycle = () => {
+    return calculBaseNine(day());
+  }
+
+  const thirdCycle = () => {
+    return calculBaseNine(year());
+  }
 
   ///////////////////////// Display methods /////////////////////////
   const displayResponse = () => {
