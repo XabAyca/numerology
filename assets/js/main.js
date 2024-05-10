@@ -35,6 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const secondApogeeHtml = document.getElementById("second-apogee");
   const thirdApogeeHtml = document.getElementById("third-apogee");
   const fourthApogeeHtml = document.getElementById("fourth-apogee");
+  const karmicDebt13Html = document.getElementById("karmic-debt-13");
+  const karmicDebt14Html = document.getElementById("karmic-debt-14");
+  const karmicDebt16Html = document.getElementById("karmic-debt-16");
+  const karmicDebt19Html = document.getElementById("karmic-debt-19");
   const printBtn = document.getElementById("print-btn");
   const printArea = document.getElementById("print-area");
   const months = [
@@ -80,7 +84,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "fourthApogeeDuration",
     "secondApogee",
     "thirdApogee",
-    "fourthApogee"
+    "fourthApogee",
+    "karmicDebt13",
+    "karmicDebt14",
+    "karmicDebt16",
+    "karmicDebt19"
   ];
   let letterValues;
   async function getLetterValues() {
@@ -188,8 +196,10 @@ document.addEventListener("DOMContentLoaded", () => {
     return Array.isArray(result) ? result.join("") : "";
   };
 
-  const calculBaseNine = (number, with_specific = true) => {
-    if (number < 10 || ([11, 22, 33].includes(number) && with_specific)) {
+  const calculBaseNine = (number, with_specific = true, karmic = false) => {
+    if (number < 10 || ([11, 22, 33].includes(number) && with_specific) && !karmic) {
+      return parseInt(number);
+    } else if (karmic && ([13, 14, 16, 19].includes(number))) {
       return parseInt(number);
     }
 
@@ -201,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return a + b;
       });
 
-    return calculBaseNine(result, with_specific);
+    return calculBaseNine(result, with_specific, karmic);
   };
 
   const month = () => {
@@ -227,6 +237,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const birthday = () => {
     return `${day()} ${months[parseInt(month()) - 1]} ${year()}`;
   };
+
+  const karmicCalculs = () => {
+    return [
+      calculBaseNine(day(), true, true),
+      calculBaseNine((day() + month()), true, true),
+      calculBaseNine((day() + month() + year()), true, true)
+    ]
+  }
 
   ///////////////////////// Calculs /////////////////////////
   const lifeRoad = () => {
@@ -352,6 +370,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const thirdCycle = () => {
     return calculBaseNine(year());
+  }
+
+  const karmicDebt13 = () => {
+    return karmicCalculs().filter(el => el == 13).length
+  }
+  const karmicDebt14 = () => {
+    return karmicCalculs().filter(el => el == 14).length
+  }
+  const karmicDebt16 = () => {
+    return karmicCalculs().filter(el => el == 16).length
+  }
+  const karmicDebt19 = () => {
+    return karmicCalculs().filter(el => el == 19).length
   }
 
   ///////////////////////// Display methods /////////////////////////
