@@ -240,9 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const karmicCalculs = () => {
     return [
-      calculBaseNine(day(), true, true),
-      calculBaseNine((day() + month()), true, true),
-      calculBaseNine((day() + month() + year()), true, true)
+      calculBaseNine(parseInt(day()), true, true),
+      calculBaseNine((parseInt(day()) + parseInt(month())), true, true),
+      calculBaseNine((parseInt(day()) + parseInt(month()) + parseInt(year())), true, true)
     ]
   }
 
